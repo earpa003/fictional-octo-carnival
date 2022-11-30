@@ -21,5 +21,18 @@ def merge_sort(arr,cmp):
     pass
 
 # must be in-place sort
-def quick_sort(arr,cmp):
-    pass
+def quick_sort(arr,cmp,bot=0,top=None):
+    if bot>=top: return arr
+    if top==None: top = len(arr)
+
+    pvt = arr[bot]
+
+    for i in range(bot,top):
+        if cmp(arr[i],pvt) <= 0:
+            arr[i],arr[bot] = arr[bot],arr[i]
+            bot += 1
+    
+    quick_sort(arr,cmp,0,bot)
+    quick_sort(arr,cmp,bot,top)
+
+    return arr
